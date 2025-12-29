@@ -20,20 +20,23 @@
           home_s   (tap-hold-next-release 250 s         lalt)
           home_d   (tap-hold-next-release 150 d         lshift)
           home_f   (tap-hold-next-release 200 f         lctrl)
-
           home_sc  (tap-hold-next-release 200 semicolon rmeta)
+
+          caps_esc esc
         )
 
         (defsrc
           q w e r t y u i o p
-          a s d f g h j k l semicolon
+          caps a s d f g h j k l semicolon
           z x c v b n m
+
         )
 
         (deflayer base
           q w e r t y u i o p
-          @home_a @home_s @home_d @home_f g h j k l @home_sc
+          @caps_esc @home_a @home_s @home_d @home_f g h j k l @home_sc
           z x c v b n m
+
         )
 
       '';
