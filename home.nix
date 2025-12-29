@@ -3,12 +3,16 @@
   pkgs,
   ...
 }: {
+  # imports = [
+  #   ./homerow-mods.nix
+  # ];
   home.username = "zach";
   home.homeDirectory = "/home/zach";
   home.stateVersion = "25.11";
   home.keyboard.options = ["caps:escape"];
 
   home.packages = with pkgs; [
+    kmonad
     libinput
     ghostty
     ripgrep
