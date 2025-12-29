@@ -5,9 +5,9 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./homerow-mods.nix
+    ./hyprland-setup.nix
   ];
 
   # Keep charge between 75 and 80 percent
@@ -30,36 +30,10 @@
 
   services.getty.autologinUser = "zach";
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-  };
-
   # touchpad support
   services.libinput.enable = true;
 
-  # fingerprint sensor support
-  services.fprintd.enable = true;
-
   programs.zsh.enable = true;
-
-  # autostart hyprland
-  programs.zsh.interactiveShellInit = ''
-    # Autostart Hyprland on TTY1 only, only if not already in a Wayland session
-    if [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ] && [ "''${XDG_VTNR:-}" = "1" ]; then
-      exec Hyprland
-    fi
-  '';
 
   services.upower.enable = true;
 
