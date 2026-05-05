@@ -6,23 +6,30 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./homerow-mods.nix
     ./hyprland-setup.nix
+    ./laptop.nix
   ];
 
-  # Keep charge between 75 and 80 percent
-  services.tlp.enable = true;
-  services.tlp.settings = {
-    START_CHARGE_THRESH_BAT0 = 75;
-    STOP_CHARGE_THRESH_BAT0 = 80;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = false;
 
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev"; # REQUIRED for UEFI
+    useOSProber = true; # Detect Linux Mint
+    timeout = 300;
+  };
+
+  boot.loader.efi = {
+    canTouchEfiVariables = true;
+    efiSysMountPoint = "/boot/efi";
+  };
+
+  # Network
   networking.hostName = "nixos-btw";
-
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -30,18 +37,18 @@
 
   services.getty.autologinUser = "zach";
 
-  # touchpad support
-  services.libinput.enable = true;
-
   programs.zsh.enable = true;
 
-  services.upower.enable = true;
+  virtualisation.docker = {
+      enable = true;
+      enableOnBoot = true;
+  };
 
   #  Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zach = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -55,6 +62,8 @@
     wget
     git
     pulseaudio
+    parted
+    efibootmgr
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -16,11 +16,14 @@
         )
 
         (defalias
-          home_a   (tap-hold-next-release 200 a         lmeta)
+          home_a   (tap-hold-next-release 250 a         lmeta)
           home_s   (tap-hold-next-release 250 s         lalt)
-          home_d   (tap-hold-next-release 150 d         lshift)
-          home_f   (tap-hold-next-release 200 f         lctrl)
-          home_sc  (tap-hold-next-release 200 semicolon rmeta)
+          home_d   (tap-hold-next-release 250 d         lshift)
+          home_f   (tap-hold-next-release 250 f         lctrl)
+          home_j   (tap-hold-next-release 250 j         rctrl)
+          home_k   (tap-hold-next-release 250 k         rshift)
+          home_l   (tap-hold-next-release 250 l         ralt)
+          home_sc  (tap-hold-next-release 250 semicolon rmeta)
 
           caps_esc esc
         )
