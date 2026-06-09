@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./hyprland-setup.nix
+    ./niri-setup.nix
     ./laptop.nix
   ];
 
