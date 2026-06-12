@@ -18,6 +18,7 @@
     efiSupport = true;
     device = "nodev"; # REQUIRED for UEFI
     useOSProber = true; # Detect Linux Mint
+    configurationLimit = 5;
   };
 
   boot.loader.efi = {
@@ -26,7 +27,7 @@
   };
 
   # Network
-  networking.hostName = "nixos-btw";
+  networking.hostName = "thinkPad";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -37,8 +38,20 @@
   programs.zsh.enable = true;
 
   virtualisation.docker = {
-      enable = true;
-      enableOnBoot = true;
+    enable = true;
+    enableOnBoot = true;
+  };
+
+  # This allows me to SSH into this machine from any machine
+  # that has the public key defined in users.users.zach
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = true;
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+    openFirewall = true;
   };
 
   #  Define a user account. Don't forget to set a password with ‘passwd’.
@@ -46,12 +59,22 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
+    openssh.authorizedKeys.keys = [
+      #ssh-ed25519 <some-public-key> zach@thinkpad
+    ];
     packages = with pkgs; [
       tree
     ];
   };
 
   programs.firefox.enable = true;
+
+  # Have nix auto-collect old garbage
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   environment.systemPackages = with pkgs; [
     brightnessctl

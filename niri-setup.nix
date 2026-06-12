@@ -1,6 +1,4 @@
-{ pkgs, ...}:
-
-{
+{pkgs, ...}: {
   programs.niri.enable = true;
 
   # autostart niri
@@ -34,7 +32,7 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
-  
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;

@@ -7,6 +7,10 @@
     # Lua
     lua-language-server
 
+    # Nix
+    alejandra
+    nil
+
     # Python
     basedpyright
     python312

@@ -38,5 +38,4 @@
     vscode
     opencode
   ];
-
 }
