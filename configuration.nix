@@ -27,7 +27,7 @@
   };
 
   # Network
-  networking.hostName = "thinkPad";
+  networking.hostName = "my-nixos";
   networking.networkmanager.enable = true;
 
   # Set your time zone.

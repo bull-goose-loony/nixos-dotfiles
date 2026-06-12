@@ -2,10 +2,12 @@
   description = "Hyprland on Nixos";
 
   inputs = {
+
     nixpkgs.url = "nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs"; # this means that home-manager will use the nixpkgs that this system is using
     };
   };
 
@@ -14,7 +16,9 @@
     home-manager,
     ...
   }: {
-    nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
+    # given the inputs (nixpkgs & home-manager), output a host
+    # nixpkgs.lib.nixosSystem builds it 
+    nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
