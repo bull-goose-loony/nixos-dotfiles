@@ -12,6 +12,14 @@
   '';
 
   environment.systemPackages = with pkgs; [
+    # File explorer
+    thunar
+    thunar-volman
+
+    # Default terminal for niri
+    alacritty
+
+    noctalia-shell
     fuzzel
     waybar
     mako

@@ -12,15 +12,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = false;
-
+  boot.loader.timeout = 300;
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
     device = "nodev"; # REQUIRED for UEFI
     useOSProber = true; # Detect Linux Mint
-    timeout = 300;
   };
 
   boot.loader.efi = {

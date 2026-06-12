@@ -13,6 +13,8 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
+    man-pages
+    man-pages-posix
     libinput
     ghostty
     ripgrep
