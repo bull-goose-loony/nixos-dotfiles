@@ -1,9 +1,5 @@
-{
-  config,
-    lib,
-    pkgs,
-    ...
-}: {
+{ config, lib, pkgs, inputs, ... }: {
+
   imports = [
     ./hardware-configuration.nix
       ./niri-setup.nix
@@ -77,7 +73,12 @@
       pulseaudio
       parted
       efibootmgr
+
+      # Here, the helix package is installed from the helix input data source
+      # inputs.helix.packages."${pkgs.stdenv.hostPlatform.system}".helix
   ];
 
+# This has nothing to do with dependency versions, it's just
+# there to inform the system on what would be most compatible
   system.stateVersion = "25.11"; # Did you read the comment?
 }
