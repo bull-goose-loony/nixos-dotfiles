@@ -1,22 +1,13 @@
 {pkgs, ... }: {
 
   programs.zsh.shellAliases = {
-# Resume
-    br = "cd ~/resume && pdflatex resume.tex && evince resume.pdf";
-
 # General
-    swapscreen = "xrandr --output HDMI-1 --left-of DP-2";
-    wmconf = "$TEXT_EDITOR $WM_CONF";
     why = "ncdu";
     h = "history";
-    postgres = "sudo -i -u postgres";
-    bdb = "psql -U postgres -d budgetdb";
-    bdbload = "psql -U postgres -d budgetdb -f /home/zach/src/personal-budget/budget-backend/init_db.sql";
     down = "sudo shutdown now";
-    termconf = "$TEXT_EDITOR $TERM_CONF";
 
 # NixOS
-    nrsf = "sudo nixos-rebuild switch --flake";
+    rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#zachsNixosFlake";
 
 # Pacman leftovers
     sps = "sudo pacman -S";

@@ -26,12 +26,9 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+
     myHomeManager.url = "github:nix-community/home-manager";
     myHomeManager.inputs.nixpkgs.follows = "nixpkgs";
-
-# Adding helix as an example that we can include packages that 
-# nixpkgs doesn't have
-# helix.url = "github:helix-editor/helix/master";
   };
 
 
@@ -41,10 +38,12 @@
 #  
 # self is the return value of this function and path to current flakes source
 # folder
-  outputs = inputs@{self,  nixpkgs, myHomeManager, ... }: {
-# given the inputs (nixpkgs & home-manager), output a host
-# nixpkgs.lib.nixosSystem builds it 
-    nixosConfigurations.zachsNixosFlake = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{
+    nixpkgs,
+    myHomeManager,
+    ...
+  }: let
+   mkHost = hostPath: {
       system = "x86_64-linux";
 
       # This allows us to give *all* flake inputs to submodules
@@ -62,6 +61,11 @@
             };
           }
       ];
+    };
+  in {
+    nixosConfigurations = {
+      thinkpad = mkHost ./hosts/thinkpad;
+      desktop = mkHost ./hosts/desktop;
     };
   };
 }

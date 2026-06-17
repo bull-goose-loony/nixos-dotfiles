@@ -1,3 +1,4 @@
+# nixos-dotfiles/home/shell/default.nix
 {
   imports = [
     ./zsh.nix
