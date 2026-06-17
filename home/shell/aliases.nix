@@ -5,7 +5,6 @@
     br = "cd ~/resume && pdflatex resume.tex && evince resume.pdf";
 
 # General
-    cd = "z";
     swapscreen = "xrandr --output HDMI-1 --left-of DP-2";
     wmconf = "$TEXT_EDITOR $WM_CONF";
     why = "ncdu";
@@ -69,31 +68,4 @@
     show_keycodes = "sudo libinput debug-events --show-keycodes";
   };
 
-  programs.zsh.initContent = ''
-# colorize man pages
-    export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
-
-# colorize help pages
-    alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-
-# fzf shell integration
-    source <(fzf --zsh)
-
-    function jb(){
-      journalctl -a -b -u "$1" | less +G
-    }
-
-  function jub(){
-    journalctl --user -a -b -u "$1" | less +G
   }
-
-  function jf(){
-    journalctl -a -f -u "$1"
-  }
-
-  function juf(){
-    journalctl --user -a -f -u "$1"
-  }
-  '';
-}

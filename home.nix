@@ -2,13 +2,7 @@
 
 {
   imports = [
-    ./home/packages.nix
-      ./home/shell/zsh.nix
-      ./home/shell/starship.nix
-      ./home/shell/aliases.nix
-      ./home/shell/env.nix
-      ./home/programs/git.nix
-      ./home/programs/alacritty.nix
+    ./home
   ];
 
   home.username = "zach";

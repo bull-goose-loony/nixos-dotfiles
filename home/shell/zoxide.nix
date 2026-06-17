@@ -1,5 +1,5 @@
 { ... }: {
-  programs.starship = {
+  programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
   };
