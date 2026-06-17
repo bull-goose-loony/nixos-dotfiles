@@ -38,34 +38,45 @@
 #  
 # self is the return value of this function and path to current flakes source
 # folder
-  outputs = inputs@{
+  outputs = {
     nixpkgs,
-    myHomeManager,
+    home-manager,
     ...
-  }: let
-   mkHost = hostPath: {
+  }: {
+    nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
-      # This allows us to give *all* flake inputs to submodules
-      specialArgs = { inherit inputs; };
-
       modules = [
-        ./configuration.nix
-        myHomeManager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.zach = import ./home.nix;
-              backupFileExtension = "backup";
-            };
-          }
+        ./hosts/thinkpad
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            users.zach = import ./home.nix;
+          };
+        }
       ];
     };
-  in {
-    nixosConfigurations = {
-      thinkpad = mkHost ./hosts/thinkpad;
-      desktop = mkHost ./hosts/desktop;
+
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+
+      modules = [
+        ./hosts/desktop
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            users.zach = import ./home.nix;
+          };
+        }
+      ];
     };
   };
 }
