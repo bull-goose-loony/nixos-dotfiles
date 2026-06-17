@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./homerow-mods.nix
     ../../modules/shared
   ];
 
-# This hostname can be whatever, doesn't need to match the Nix Flake host 
+  # This hostname can be whatever, doesn't need to match the Nix Flake host
   networking.hostName = "thinkPad";
 
   # Keep charge between 80 and 90 percent

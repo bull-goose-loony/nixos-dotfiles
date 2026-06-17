@@ -3,5 +3,6 @@
   imports = [
     ./alacritty.nix
     ./git.nix
+    ./noctalia.nix
   ];
 }

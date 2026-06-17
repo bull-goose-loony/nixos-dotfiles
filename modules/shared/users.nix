@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   users.users.zach = {
     shell = pkgs.zsh;
     isNormalUser = true;
@@ -12,5 +12,4 @@
       # "ssh-ed25519 <some-public-key> zach@thinkpad"
     ];
   };
-
 }

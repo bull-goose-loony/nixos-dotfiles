@@ -1,6 +1,5 @@
-{ pkgs, ... }: {
-
-# alacritty - a cross-platform, GPU-accelerated terminal emulator
+{pkgs, ...}: {
+  # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
 
@@ -90,46 +89,46 @@
       };
 
       keyboard.bindings = [
-      {
-        key = "C";
-        mods = "Control|Shift";
-        action = "Copy";
-      }
-      {
-        key = "V";
-        mods = "Control|Shift";
-        action = "Paste";
-      }
-      {
-        key = "Equals";
-        mods = "Control";
-        action = "IncreaseFontSize";
-      }
-      {
-        key = "Minus";
-        mods = "Control";
-        action = "DecreaseFontSize";
-      }
-      {
-        key = "Key0";
-        mods = "Control";
-        action = "ResetFontSize";
-      }
-      {
-        key = "F";
-        mods = "Control|Shift";
-        action = "SearchForward";
-      }
-      {
-        key = "Space";
-        mods = "Control|Shift";
-        action = "ToggleViMode";
-      }
-      {
-        key = "Return";
-        mods = "Control|Shift";
-        action = "SpawnNewInstance";
-      }
+        {
+          key = "C";
+          mods = "Control|Shift";
+          action = "Copy";
+        }
+        {
+          key = "V";
+          mods = "Control|Shift";
+          action = "Paste";
+        }
+        {
+          key = "Equals";
+          mods = "Control";
+          action = "IncreaseFontSize";
+        }
+        {
+          key = "Minus";
+          mods = "Control";
+          action = "DecreaseFontSize";
+        }
+        {
+          key = "Key0";
+          mods = "Control";
+          action = "ResetFontSize";
+        }
+        {
+          key = "F";
+          mods = "Control|Shift";
+          action = "SearchForward";
+        }
+        {
+          key = "Space";
+          mods = "Control|Shift";
+          action = "ToggleViMode";
+        }
+        {
+          key = "Return";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
       ];
 
       general = {
@@ -236,4 +235,4 @@
       };
     };
   };
-               }
+}

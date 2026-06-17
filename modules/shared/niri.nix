@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.niri.enable = true;
 
   # autostart niri
@@ -17,7 +21,6 @@
     # Default terminal for niri
     alacritty
 
-    noctalia-shell
     fuzzel
     waybar
     mako

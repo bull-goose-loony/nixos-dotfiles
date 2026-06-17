@@ -1,5 +1,4 @@
-{pkgs, ... }: {
-
+{pkgs, ...}: {
   home.sessionVariables = {
     HOME = "/home/zach";
     EDITOR = "nvim";
@@ -7,7 +6,7 @@
     TERM = "alacritty";
     HISTCONTROL = "ignoreboth";
 
-    RUST_LOG="debug cargo run";
+    RUST_LOG = "debug cargo run";
 
     KEYMAP_DIR = "$HOME/qmk_firmware/keyboards/ergodox_ez/keymaps/zachs_keymap";
     DOTFILE_DIR = "$HOME/.cfg";
@@ -21,28 +20,27 @@
       --border=rounded
       --margin=1
       --preview-window=hidden
-      '';
+    '';
 
     FZF_CTRL_T_OPTS = ''
       --walker-skip .git,node_modules,target
       --preview 'bat -n --color=always {}'
       --bind 'ctrl-/:change-preview-window(down|hidden|)'
-      '';
+    '';
 
     FZF_CTRL_R_OPTS = ''
       --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
       --color header:italic
       --header 'Press CTRL-Y to copy command into clipboard'
-      '';
+    '';
 
     FZF_ALT_C_OPTS = ''
       --walker-skip .git,node_modules,target
       --preview 'tree -C {}'
-      '';
+    '';
   };
 
   home.sessionPath = [
     "$HOME/.npm-global/bin"
   ];
-              }
-
+}

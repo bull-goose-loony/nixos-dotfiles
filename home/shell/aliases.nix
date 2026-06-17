@@ -1,50 +1,49 @@
-{pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.zsh.shellAliases = {
-# General
+    # General
     why = "ncdu";
     h = "history";
     down = "sudo shutdown now";
 
-# NixOS
+    # NixOS
     rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
 
-# Pacman leftovers
+    # Pacman leftovers
     sps = "sudo pacman -S";
     spsy = "sudo pacman -Sy";
     spsu = "sudo pacman -Su";
     spsyyu = "sudo pacman -Syyu";
 
-# Keyboard
+    # Keyboard
     ke = "cd $KEYMAP_DIR && vim .";
     kf = "cd $KEYMAP_DIR && qmk flash -kb ergodox_ez -km zachs_keymap && cd -";
     kc = "cd $KEYMAP_DIR && qmk compile -kb ergodox_ez -km zachs_keymap && cd -";
 
-# Configs
+    # Configs
     al = "$TEXT_EDITOR ~/.zsh_aliases";
     ale = "cat ~/.zsh_aliases";
     env = "$TEXT_EDITOR $HOME/.zshenv";
     sauce = "source $HOME/.zshrc";
     vrc = "cd $XDG_CONFIG_HOME/nvim; nvim .";
 
-# Overwrites
+    # Overwrites
     grep = "rg";
     ps = "ps -au";
     psa = "ps -au";
     vim = "$TEXT_EDITOR";
 
-## ls
+    ## ls
     ls = "eza -lh --group-directories-first --icons=auto";
     ll = "eza --long --all --git";
     lt = "eza --long --tree --level=3";
 
-# cat
+    # cat
     cat = "bat";
 
-# Programming
+    # Programming
     py = "python3";
 
-# Git
+    # Git
     gco = "git checkout";
     gcob = "git checkout -b";
     gs = "git status -s";
@@ -53,10 +52,9 @@
     gcm = "git commit -m";
     gd = "git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff";
 
-# Rust
+    # Rust
     ctl = "cargo test -- --nocapture";
 
     show_keycodes = "sudo libinput debug-events --show-keycodes";
   };
-
-  }
+}
