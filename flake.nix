@@ -27,8 +27,15 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    myHomeManager.url = "github:nix-community/home-manager";
-    myHomeManager.inputs.nixpkgs.follows = "nixpkgs";
+  home-manager = {
+    url = "github:nix-community/home-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+  }
+
+  noctalia = {
+    url = "github:noctalia-dev/noctalia/legacy-v4";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
 
@@ -38,13 +45,11 @@
 #  
 # self is the return value of this function and path to current flakes source
 # folder
-  outputs = {
-    nixpkgs,
-    home-manager,
-    ...
-  }: {
+  outputs = inputs@{ nixpkgs, home-manager, noctalia, ... }: {
+
     nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit inputs}
 
       modules = [
         ./hosts/thinkpad
@@ -63,6 +68,7 @@
 
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit inputs}
 
       modules = [
         ./hosts/desktop

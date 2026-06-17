@@ -7,7 +7,7 @@
     down = "sudo shutdown now";
 
 # NixOS
-    rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#zachsNixosFlake";
+    rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
 
 # Pacman leftovers
     sps = "sudo pacman -S";
